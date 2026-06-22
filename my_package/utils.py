@@ -9,9 +9,12 @@ def _check_in_out(history_list):
     [True, False]
     """
     result = []
-    for item in history_list:
-        if item['amount'] > 0:
-            result.append(True)
-        else:
-            result.append(False)
-    return result
+    try:
+        for item in history_list:
+            if item['amount'] > 0:
+                result.append(True)
+            else:
+                result.append(False)
+        return result
+    except TypeError:
+        return "데이터 타입을 확인해주세요."
