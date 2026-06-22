@@ -16,7 +16,7 @@ class MonthlyHistory:
         self.month = month
         self.__use_history = []
 
-    def add_history(self, day, amount, category, memo):
+    def add_history(self, day: int, amount: int, category: str, memo: str):
         """거래 내역을 딕셔너리 형태로 저장합니다.
 
         :param day: 거래가 발생한 날짜 (일).
@@ -52,8 +52,10 @@ class MonthlyHistory:
         >>> history.calculate_total()
         30000
         """
-
-        return sum(item['amount'] for item in self.__use_history)
+        try:
+            return sum(item['amount'] for item in self.__use_history)
+        except TypeError:
+            return "계산할 수 없는 잘못된 데이터 타입이 포함되어 있습니다."
 
     def get_history(self):
         """내부 거래 내역 리스트의 복사본을 반환합니다.
